@@ -1,43 +1,17 @@
-## This repo is looking for maintainers! Please reach out if interested.
-
---------
-
-
-
 node-multi-hashing
 ===============
 
-[![Build Status](https://travis-ci.org/zone117x/node-multi-hashing.png?branch=master)](https://travis-ci.org/zone117x/node-multi-hashing)
-
-[![NPM](https://nodei.co/npm/multi-hashing.png?downloads=true&stars=true)](https://nodei.co/npm/multi-hashing/)
+[![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ROZ-MOFUMOFU-ME/zny-nomp)
+[![GitHub CI](https://github.com/ROZ-MOFUMOFU-ME/node-multi-hashing/actions/workflows/node.js.yml/badge.svg)](https://github.com/ROZ-MOFUMOFU-ME/node-multi-hashing/actions/workflows/node.js.yml)
+[![CircleCI](https://circleci.com/gh/ROZ-MOFUMOFU-ME/node-multi-hashing/tree/main.svg?style=svg)](https://circleci.com/gh/ROZ-MOFUMOFU-ME/node-multi-hashing/tree/main)
 
 Cryptocurrency hashing functions for node.js.
 
 
 Algorithms
 ----------
-* quark
-* x11
-* x13
-* x16r
-* x16rv2
-* nist5
-* scrypt
-* scryptn
-* scryptjane
-* keccak
-* bcrypt
-* skein
-* groestl
-* blake
-* fugue
-* qubit
-* hefty1
-* shavite3
-* cryptonight
-* boolberry
-* sha256d
-* lbry
+Supported algorithms: `quark, x11, x13, x16r, x16rv2, nist5, scrypt, scryptn, scryptjane, keccak, bcrypt, skein, groestl, blake, fugue, qubit, hefty1, shavite3, cryptonight, boolberry, sha256d, lbry, kawpaw, allium, blake2s, gost, hsr, lyra2re2, lyra2z, m7, m7m, minotaur, odo, phi1612, sha1, skunk, skydoge, tribus, whirlpoolx, x17, x25x, xevan, zr5, yescrypt, yespower`, *__and more!__*
+
 
 Usage
 -----
@@ -48,30 +22,22 @@ Install
 npm install multi-hashing
 ```
 
-So far this native Node.js addon can do the following hashing algos
+Example usage:
 
 ```javascript
 var multiHashing = require('multi-hashing');
 
-var algorithms = ['quark', 'x11', 'scrypt', 'scryptn', 'scryptjane', 'keccak', 'bcrypt', 'skein', 'blake'];
+var algorithms = ['quark', 'x11', 'scrypt', 'scryptn', 'keccak', 'bcrypt', 'skein', 'blake'];
 
 var data = new Buffer("7000000001e980924e4e1109230383e66d62945ff8e749903bea4336755c00000000000051928aff1b4d72416173a8c3948159a09a73ac3bb556aa6bfbcad1a85da7f4c1d13350531e24031b939b9e2b", "hex");
 
 var hashedData = algorithms.map(function(algo){
-    if (algo === 'scryptjane'){
-        //scryptjane needs block.nTime and nChainStartTime (found in coin source)
-        var yaCoinChainStartTime = 1367991200;
-        var nTime = Math.round(Date.now() / 1000);
-        return multiHashing[algo](data, nTime, yaCoinChainStartTime);
-    }
-    else{
-        return multiHashing[algo](data);
-    }
+    return multiHashing[algo](data);
 });
 
 
 console.log(hashedData);
-//<SlowBuffer 0b de 16 ef 2d 92 e4 35 65 c6 6c d8 92 d9 66 b4 3d 65 ..... >
+//<Buffer 0b de 16 ef 2d 92 e4 35 65 c6 6c d8 92 d9 66 b4 3d 65 ..... >
 
 
 ```

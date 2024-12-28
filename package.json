@@ -1,19 +1,25 @@
 {
-    "name": "node-multi-hashing",
-    "version": "0.0.9",
-    "main": "multihashing",
+    "name": "multi-hashing",
+    "version": "1.0.2",
+    "main": "index.js",
     "author": {
         "name": "Matthew Little",
         "email": "zone117x@gmail.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Sandokaaan/node-multi-hashing.git"
+        "url": "https://github.com/zone117x/node-multi-hashing.git"
     },
-    "dependencies" : {
-        "bindings" : "*"
+    "scripts": {
+        "build": "node-gyp rebuild",
+        "test": "mocha --require @babel/register --gc-global tests/test.vectors.js"
+    },
+    "dependencies": {
+        "bindings": "^1.5.0",
+        "nan": "^2.20.0"
     },
     "keywords": [
+        "argon2",
         "scrypt",
         "scryptjane",
         "script-n",
@@ -27,5 +33,22 @@
         "shavite",
         "fugue",
         "sha1"
-    ]
+    ],
+    "devDependencies": {
+        "@babel/register": "^7.24.6",
+        "mocha": "^10.7.3"
+    },
+    "release": {
+        "branches": [
+            "main"
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            "@semantic-release/npm",
+            "@semantic-release/github",
+            "@semantic-release/changelog",
+            "@semantic-release/git"
+        ]
+    }
 }
