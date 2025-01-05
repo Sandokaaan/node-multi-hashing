@@ -1,8 +1,16 @@
-#ifndef _BLAKE_H_
-#define _BLAKE_H_
+#ifndef BLAKE_H
+#define BLAKE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include <stdint.h>
 
 void blake_hash(const char* input, char* output, uint32_t len);
 
-#endif /* _BLAKE_H_ */
+#ifdef __cplusplus
+}
+#endif
+
+#endif
