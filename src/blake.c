@@ -1,18 +1,9 @@
-#include "blake.h"
-#include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
+#include "blake.h"
+#include "crypto/c_blake256.h"
 
-#include "sha3/sph_blake.h"
-
-
-void blake_hash(const char* input, char* output, uint32_t len)
-{
-    sph_blake256_context ctx_blake;
-    sph_blake256_set_rounds(8);
-    sph_blake256_init(&ctx_blake);
-    sph_blake256(&ctx_blake, input, len);
-    sph_blake256_close(&ctx_blake, output);
+void blake_hash(const char* input, char* output, uint32_t len) {
+    blake256_hash(output, input, len);
 }
-
